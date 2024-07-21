@@ -1,0 +1,5 @@
+Data/
+Jupyter/Data/
+.ipynb_checkpoints/
+Jupyter/.ipynb_checkpoints/
+.DS_Store
