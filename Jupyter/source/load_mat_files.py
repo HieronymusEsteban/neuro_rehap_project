@@ -7,9 +7,9 @@ import re
 def identify_get_timestamps(file_name, data_item):
 
     """This function takes and transforms the timestamps variable
-    from that is stored as a numpy.array in a numpy.void object 
-    (data_item['results'][0][0]), which is stored inside a 
-    numpy.ndarray (data_item['results']), which is in turn stored
+    that is stored as a numpy.array in a numpy.void object 
+    (data_item['results'][0][0]), which is stored inside another
+    numpy.array (data_item['results']), which is in turn stored
     inside a dictionary (data_item).
     The .dtype attribute of data_item['results'] contains the
     names of all the variables in the same order as the 
@@ -17,8 +17,8 @@ def identify_get_timestamps(file_name, data_item):
     The time stamps should be used as identifiers as we 
     want to split the data into different parts based on 
     when data values were measured. The timestamps indicate
-    the time span since the measuring device was switched on 
-    in seconds. Therefore, timestamps measured in hours are 
+    the time span between the time the measuring device was switched on 
+    and the measurement in seconds. Therefore, timestamps measured in hours are 
     also added. As a comparison between morning and afternoon
     is desired a categorical variable indicating whether a measurement
     took place in the morning or in the afternoon is also added."""
@@ -35,8 +35,8 @@ def identify_get_timestamps(file_name, data_item):
 
 
     # Get time stamps and categorize them into morning and afternoon: 
-    # The actual data is stored as an array inside another
-    # array data_item['results'][0][0][variable_index], which thereofore
+    # The actual data is stored as an numpy.array inside another
+    # numpy.array data_item['results'][0][0][variable_index], which thereofore
     # you have to slice by adding another [0]. 
     time_stamps = data_item['results'][0][0][variable_index][0]
     time_stamps_hours = data_item['results'][0][0][variable_index][0]/3600
@@ -57,9 +57,9 @@ def identify_get_timestamps(file_name, data_item):
 def identify_get_variable(file_name, variable_name_of_interest, data_item, data_frame_to_add):
     
     """This function takes and transforms the variables stored as
-    numpy.ndarrays in a numpy.void object 
+    numpy.arrays in a numpy.void object 
     (data_item['results'][0][0]), which is stored inside a 
-    numpy.ndarray (data_item['results']), which is in turn stored
+    numpy.array (data_item['results']), which is in turn stored
     inside a dictionary (data_item).
     The .dtype attribute of data_item['results'] contains the
     names of all the variables in the same order as the 
@@ -78,8 +78,8 @@ def identify_get_variable(file_name, variable_name_of_interest, data_item, data_
     variable_index = [i for i, expr in enumerate(variable_names) if re.search(variable_name_of_interest, expr)][0]
 
     # Get data corresponding to variable name: 
-    # The actual data is stored as an array inside another
-    # array data_item['results'][0][0][variable_index], which thereofore
+    # The actual data is stored as an numpy.array inside another
+    # numpy.array data_item['results'][0][0][variable_index], which thereofore
     # you have to slice by adding another [0].
     variable = data_item['results'][0][0][variable_index][0]
 
