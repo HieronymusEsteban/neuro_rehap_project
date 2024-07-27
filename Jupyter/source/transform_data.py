@@ -101,3 +101,25 @@ def bools_to_one_hot(x):
     else:
         value = 0
     return value
+
+
+
+def add_exp_phase_id(data_wide, col_after_which_insert):
+    """This function extracts the T2 or T3 tags from the original file name
+    to designate the pre-neuro-rehab and post-neuro-rehab phase data respectively."""
+    exp_phase_id = []
+    exp_phase_descr = []
+    for index, row in data_wide.iterrows():
+        string_parts = row.subject.split('metrics_')
+        if string_parts[1] == 'T2.mat':
+            exp_phase_id.append('T2')
+            exp_phase_descr.append('Control phase: before rehab training.')
+        elif string_parts[1] == 'T3.mat':
+            exp_phase_id.append('T3')
+            exp_phase_descr.append('Test phase: after rehab training.')
+
+
+    col_position = data_wide.columns.get_loc(col_after_which_insert)
+    data_wide.insert(col_position + 1, 'exp_phase_id', exp_phase_id)
+    data_wide.insert(col_position + 2, 'exp_phase_descr', exp_phase_descr)
+    return data_wide

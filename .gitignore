@@ -1,5 +1,5 @@
-Data/
-Jupyter/Data/
-.ipynb_checkpoints/
-Jupyter/.ipynb_checkpoints/
+transform_data.cpython-312.pyc
 .DS_Store
+Jupyter/.ipynb_checkpoints/
+Jupyter/Data/
+Data/
