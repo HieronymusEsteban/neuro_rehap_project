@@ -45,7 +45,8 @@ def identify_get_timestamps(file_name, data_item):
 
     number_of_values = len(time_stamps)
     data_to_frame = {}
-    data_to_frame['subject'] = [file_name] * number_of_values
+    #data_to_frame['subject'] = [file_name] * number_of_values
+    data_to_frame['file_name'] = [file_name] * number_of_values
     data_to_frame['time_stamps'] = time_stamps
     data_to_frame['time_stamps_hours'] = time_stamps_hours
     data_to_frame['morning_afternoon'] = morning_one_hot
@@ -85,7 +86,8 @@ def identify_get_variable(file_name, variable_name_of_interest, data_item, data_
 
     number_of_values = len(variable)
 
-    data_frame_to_add['subject'] = [file_name] * number_of_values
+    #data_frame_to_add['subject'] = [file_name] * number_of_values
+    data_frame_to_add['file_name'] = [file_name] * number_of_values
     data_frame_to_add[variable_name_of_interest] = variable
 
     return data_frame_to_add
@@ -110,7 +112,8 @@ def add_exp_phase_id(data_wide, col_after_which_insert):
     exp_phase_id = []
     exp_phase_descr = []
     for index, row in data_wide.iterrows():
-        string_parts = row.subject.split('metrics_')
+        #string_parts = row.subject.split('metrics_')
+        string_parts = row.file_name.split('metrics_')
         if string_parts[1] == 'T2.mat':
             exp_phase_id.append('T2')
             exp_phase_descr.append('Control phase: before rehab training.')
