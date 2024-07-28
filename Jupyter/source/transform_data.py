@@ -46,7 +46,13 @@ def identify_get_timestamps(file_name, data_item):
     number_of_values = len(time_stamps)
     data_to_frame = {}
     #data_to_frame['subject'] = [file_name] * number_of_values
+
+    subject_name = file_name.split('.')[0]
+    subject_name_array = [subject_name] * number_of_values
+
+
     data_to_frame['file_name'] = [file_name] * number_of_values
+    data_to_frame['subject'] = subject_name_array
     data_to_frame['time_stamps'] = time_stamps
     data_to_frame['time_stamps_hours'] = time_stamps_hours
     data_to_frame['morning_afternoon'] = morning_one_hot
@@ -83,11 +89,6 @@ def identify_get_variable(file_name, variable_name_of_interest, data_item, data_
     # numpy.array data_item['results'][0][0][variable_index], which thereofore
     # you have to slice by adding another [0].
     variable = data_item['results'][0][0][variable_index][0]
-
-    number_of_values = len(variable)
-
-    #data_frame_to_add['subject'] = [file_name] * number_of_values
-    data_frame_to_add['file_name'] = [file_name] * number_of_values
     data_frame_to_add[variable_name_of_interest] = variable
 
     return data_frame_to_add
