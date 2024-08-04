@@ -47,7 +47,9 @@ def identify_get_timestamps(file_name, data_item):
     data_to_frame = {}
     #data_to_frame['subject'] = [file_name] * number_of_values
 
-    subject_name = file_name.split('.')[0]
+    #subject_name = file_name.split('.')[0]
+    name_parts = file_name.split('_')[:2]
+    subject_name = '_'.join(name_parts)
     subject_name_array = [subject_name] * number_of_values
 
 
